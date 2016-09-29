@@ -1,0 +1,104 @@
+html, body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    height: 100vh;
+    margin: 0;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    text-align: center;
+    max-width: 300px;
+}
+
+.title {
+    font-size: 60px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.links > a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+
+.login-form {
+    width: 100%;
+    padding: 0 10px;
+}
+
+.login-input {
+    height: 40px;
+    width: 100%;
+    font-size: 17px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    border: none;
+    border-bottom: 1px solid #d9d9d9;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+    outline: none;
+}
+.login-input.password {
+    margin-top: 20px;
+}
+.login-input:focus {
+    border-bottom: 1px solid skyblue;
+}
+.login-input.error {
+    border-bottom-color: red;
+}
+
+
+.submit-btn {
+    margin-top: 30px;
+    width: 100%;
+    padding: 10px;
+    background-color: #00bfff;
+    border: none;
+    box-shadow: none;
+    color: #fff;
+    font-family: 'Open Sans',sans-serif;
+    font-size: 18px;
+    border-radius: 5px;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease;
+}
+.submit-btn:hover {
+    background-color: #00b2ee;
+}
+.submit-btn[disabled],
+.submit-btn[disabled]:hover {
+    background-color: #65d7fd;
+    cursor: not-allowed;
+}
