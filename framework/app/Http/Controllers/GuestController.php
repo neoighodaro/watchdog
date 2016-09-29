@@ -9,6 +9,14 @@ use App\Http\Requests;
 class GuestController extends Controller {
 
     /**
+     * GuestController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
+
+    /**
      * Welcome screen.
      *
      * @return \Illuminate\Http\Response
