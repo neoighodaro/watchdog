@@ -1,2 +1,2 @@
-# watchdog
-Simple &amp; Extensible Application Monitor!
+# Watchdog!
+Simple &amp; Extensible Application Monitor! Woof Woof!
