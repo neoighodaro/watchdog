@@ -11,15 +11,7 @@
 |
 */
 
-Route::post('/login', [
-    'as'   => 'login',
-    'uses' => 'Auth\LoginController@login'
-]);
+Route::post('/login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
+Route::get('/login',  ['uses' => 'GuestController@login']);
 
-Route::get('/login', function () {
-    return redirect()->home();
-});
-
-Route::get('/', ['as' => 'home', function () {
-    return view('welcome');
-}]);
+Route::get('/', ['as' => 'home', 'uses' => 'GuestController@welcome']);
