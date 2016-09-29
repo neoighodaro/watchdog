@@ -1,17 +1,16 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or controller method. Build something great!
-|
-*/
+// ---------------------------------------------------------------------
+// Authenticate
+// ---------------------------------------------------------------------
 
-Route::post('/login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
-Route::get('/login',  ['uses' => 'GuestController@login']);
+$router->get('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+$router->post('login', ['as' => 'login', 'uses' => 'Auth\LoginController@login']);
+$router->get('login',  ['uses' => 'GuestController@login']);
 
-Route::get('/', ['as' => 'home', 'uses' => 'GuestController@welcome']);
+
+// ---------------------------------------------------------------------
+// Misc.
+// ---------------------------------------------------------------------
+
+$router->get('/', ['as' => 'home', 'uses' => 'GuestController@welcome']);
