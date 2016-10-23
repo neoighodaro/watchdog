@@ -47,9 +47,9 @@
                     <div class="status">
                     <!-- @todo should use icons instead... -->
                     @if ( ! $service->hasRunAtLeastOnce())
-                        Not Run
+                        Unknown Status
                     @else
-                        {{ $service->isServiceOk() ? "Cool" : "Not Cool" }}
+                        {{ $service->isServiceOk() ? "Operational" : "Not Operational" }}
                     @endif
                     </div>
                 </li>
