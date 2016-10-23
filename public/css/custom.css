@@ -155,6 +155,15 @@ html, body {
 .page-status.status-none {
     background-color: #5bc3b6;
 }
+.page-status.status-warning {
+    background-color: #5bc3b6;
+}
+.page-status.status-danger {
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    color: #a94442;
+    opacity: 1;
+}
 .page-status .status {
     color: #fff;
     position: relative;
