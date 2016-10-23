@@ -66,6 +66,16 @@ class Status extends Model {
     }
 
     /**
+     * Get the last entry in the status table.
+     *
+     * @return Illuminate\Database\Query\Builder
+     */
+    public function scopeRecent($query, $limit = 10)
+    {
+        return $query->take($limit)->orderBy('created_at', 'desc');
+    }
+
+    /**
      * Return the relating service.
      *
      * @return Illuminate\Database\Eloquent\Relations\BelongsTo

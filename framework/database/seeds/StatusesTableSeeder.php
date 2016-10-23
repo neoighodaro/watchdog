@@ -1,5 +1,6 @@
 <?php
 
+use App\Service;
 use Illuminate\Database\Seeder;
 
 class StatusesTableSeeder extends Seeder
@@ -15,8 +16,17 @@ class StatusesTableSeeder extends Seeder
 
         for ($i=0; $i < 10; $i++) {
             $statuses[] = [
-                'service_id' => 1,
-                'response'   => $i == 8 ? 0 : 200,
+                'service_id' => Service::whereUrl('https://hotels.ng')->first()->id,
+                'response'   => $i == 7 ? 0 : 200,
+                'created_at' => (new Carbon\Carbon)->addMinutes($i),
+                'updated_at' => (new Carbon\Carbon)->addMinutes($i),
+            ];
+        }
+
+        for ($i=0; $i < 10; $i++) {
+            $statuses[] = [
+                'service_id' => Service::whereUrl('https://hms.hotels.ng')->first()->id,
+                'response'   => $i >= 5 ? 0 : 200,
                 'created_at' => (new Carbon\Carbon)->addMinutes($i),
                 'updated_at' => (new Carbon\Carbon)->addMinutes($i),
             ];

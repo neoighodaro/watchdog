@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App;
+use App\Service;
 use App\Http\Requests;
 
 class StatusController extends Controller {
 
     public function index()
     {
-        $pageStatus = App\Status::HEALTHY;
+        $pageStatus = (new Service)->fullStatus();
 
-        $services   = App\Service::all();
+        $services   = Service::all();
 
         return view('status', [
             'services'   => $services,
-            'pageStatus' => $pageStatus,
+            'pageStatus' => array_get($pageStatus, 'healthStatus'),
         ]);
     }
 }

@@ -7,6 +7,28 @@ html, body {
     margin: 0;
 }
 
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.clearfix { display: inline-block; }
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+
+
 .full-height {
     height: 100vh;
 }
@@ -114,7 +136,7 @@ html, body {
 }
 
 .contain {
-    max-width: 600px;
+    max-width: 700px;
     width: 100%;
     margin: 0 auto;
 }
@@ -123,10 +145,11 @@ html, body {
     position: relative;
     top: 18px;
     margin: 0 auto;
-    width: 150px;
-    max-width: 150px;
+    width: 700px;
+    max-width: 700px;
     max-height: 150px;
     text-align: center;
+    margin-top: 50px;
 }
 
 .centered.links {
@@ -148,22 +171,26 @@ html, body {
     -ms-border-radius: 4px;
     border: 1px solid rgba(0,0,0,0.1);
     text-shadow: 0 1px 0 rgba(0,0,0,0.1);
-    margin-bottom: 70px;
+    margin-bottom: 50px;
     padding: .75rem 1.25rem;
     font-family: "Avenir Next", "Proxima Nova", "Helvetica Neue", sans-serif;
 }
+
 .page-status.status-none {
     background-color: #5bc3b6;
 }
+
 .page-status.status-warning {
     background-color: #5bc3b6;
 }
+
 .page-status.status-danger {
     background-color: #f2dede;
     border-color: #ebccd1;
     color: #a94442;
     opacity: 1;
 }
+
 .page-status .status {
     color: #fff;
     position: relative;
@@ -185,6 +212,16 @@ html, body {
     top: 7px;
 }
 
+h1.page-title {
+    display: inline-block;
+    line-height: 1;
+    top: -10px;
+    position: relative;
+    font-size: 100px;
+    font-weight: 100;
+    margin: 0 0 0 50px;
+}
+
 ul.services {
     list-style: none;
     padding: 0;
@@ -192,5 +229,52 @@ ul.services {
 }
 
 ul.services > li {
-    border: 1px solid #f0f0f0;
+    border: 1px solid #d9d9d9;
+    border-bottom: none;
+    padding: 10px 15px;
+}
+
+ul.services > li:first-child {
+    border-radius: 5px 5px 0 0;
+}
+
+ul.services > li:last-child {
+    border-radius: 0 0 5px 5px;
+    border-bottom: 1px solid #d9d9d9;
+}
+
+ul.services h3.title {
+    font-size: 18px;
+    height: 50px;
+    font-weight: 600;
+    margin: 5px 0 0;
+}
+
+ul.services h3.title .url {
+    font-size: 14px;
+    font-weight: 400;
+    display: block;
+    margin-top: 2px;
+    color: #b0b0b0;
+    font-family: 'Open Sans';
+    text-decoration: none;
+}
+ul.services h3.title .url:hover {
+    color: #a0a0a0;
+}
+
+ul.services .status {
+    line-height: 50px;
+    height: 50px;
+    font-weight: 300;
+    color: #5bc3b6;
+    font-family: 'Open Sans';
+}
+
+ul.services .status.unknown {
+    color: orange;
+}
+
+ul.services .status.not-operational {
+    color: red;
 }

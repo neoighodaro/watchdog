@@ -13,7 +13,7 @@ class ServicesTableSeeder extends Seeder
     {
         $services = [
             [
-                'name' => 'Hotels.ng',
+                'name' => 'Hotels.ng (v5)',
                 'url' => 'https://hotels.ng',
                 'description' => 'Hotels.ng Official Website.',
                 'type' => 'http',
@@ -27,6 +27,17 @@ class ServicesTableSeeder extends Seeder
                 'name' => 'Finance Place',
                 'url' => 'http://finance.place',
                 'description' => 'Finance Place.',
+                'type' => 'http',
+                'user_id' => 1,
+                'deleted_at' => NULL,
+                'meta' => '{}',
+                'created_at' => Carbon\Carbon::now(),
+                'updated_at' => Carbon\Carbon::now(),
+            ],
+            [
+                'name' => 'HMS',
+                'url' => 'https://hms.hotels.ng',
+                'description' => 'Hotel Management System.',
                 'type' => 'http',
                 'user_id' => 1,
                 'deleted_at' => NULL,
