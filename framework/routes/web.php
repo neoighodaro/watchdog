@@ -15,4 +15,5 @@ $router->get('login',  ['uses' => 'GuestController@login']);
 // Misc.
 // ---------------------------------------------------------------------
 
+$router->get('/home', function () { return redirect()->route('status'); });
 $router->get('/', ['as' => 'home', 'uses' => 'GuestController@welcome']);
