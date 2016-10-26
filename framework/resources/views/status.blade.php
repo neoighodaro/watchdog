@@ -23,7 +23,7 @@
               <span class="status font-large">
                 All Systems Operational
               </span>
-                <span class="last-updated-stamp font-small">Refreshed about a minute ago</span>
+                <span class="last-updated-stamp font-small">Last Checked {{ ucwords($summary['lastCheck']->diffForHumans()) }}</span>
             </div>
             @endif
 

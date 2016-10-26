@@ -28,6 +28,7 @@ class Service extends Model {
         'name',
         'type',
         'meta',
+        'cron',
         'user_id',
         'description',
     ];
@@ -183,7 +184,6 @@ class Service extends Model {
 
             $breaks = $serviceStatus['breaks'];
 
-            // 50% is the critical threshold
             $criticalThreshold = $breaks >= round($serviceStatus['checks'] * 0.5);
             $warningThreshold  = $breaks >= round($serviceStatus['checks'] * 0.2);
 

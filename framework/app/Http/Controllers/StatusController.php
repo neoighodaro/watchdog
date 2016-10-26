@@ -9,13 +9,13 @@ class StatusController extends Controller {
 
     public function index()
     {
-        $pageStatus = (new Service)->fullStatus();
-
-        $services   = Service::all();
+        $service = new Service;
+        $summary = $service->fullStatus();
 
         return view('status', [
-            'services'   => $services,
-            'pageStatus' => array_get($pageStatus, 'healthStatus'),
+            'summary'    => $summary,
+            'services'   => $service->all(),
+            'pageStatus' => array_get($summary, 'healthStatus'),
         ]);
     }
 }

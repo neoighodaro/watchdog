@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Service\Watchdog;
+use App\Service as ServiceModel;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -12,9 +14,7 @@ class Kernel extends ConsoleKernel
      *
      * @var array
      */
-    protected $commands = [
-        //
-    ];
+    protected $commands = [];
 
     /**
      * Define the application's command schedule.
@@ -24,8 +24,21 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $services = app('cache')->remember('services.schedule', 5, function () {
+            return ServiceModel::all();
+        });
+
+        foreach ($services as $service) {
+            $schedule->call(function () use ($service) {
+                $status = (new Watchdog($service))->check();
+
+                // Update the status...
+                dd($status);
+            })
+            ->cron($service->cron)
+            ->name(str_slug($service->name))
+            ->withoutOverlapping();
+        }
     }
 
     /**
