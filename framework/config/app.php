@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'Watchdog!',
 
     /*
     |--------------------------------------------------------------------------
@@ -172,6 +172,7 @@ return [
         /*
          * Application Service Providers...
          */
+        App\Providers\PluginServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

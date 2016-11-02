@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title', trans('app.login')) | Watchdog!</title>
+    <title>@yield('title', trans('app.login')) | {{ config('app.name') }}</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,00,600|Open+Sans:300" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">

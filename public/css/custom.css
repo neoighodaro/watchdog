@@ -181,14 +181,11 @@ html, body {
 }
 
 .page-status.status-warning {
-    background-color: #5bc3b6;
+    background-color: #ffb371;
 }
 
 .page-status.status-danger {
-    background-color: #f2dede;
-    border-color: #ebccd1;
-    color: #a94442;
-    opacity: 1;
+    background-color: #ff8888;
 }
 
 .page-status .status {

@@ -20,7 +20,8 @@
             "framework/database"
         ],
         "psr-4": {
-            "App\\": "framework/app/"
+            "App\\": "framework/app/",
+            "App\\Plugin\\": "content/plugins/"
         }
     },
     "autoload-dev": {

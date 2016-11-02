@@ -89,12 +89,14 @@ class Service extends Model {
      */
     public function fullStatus($minutesAgo = 15)
     {
-        return app('cache')->remember('Service.fullStatus', 0.5, function () use ($minutesAgo) {
+        $cacheTime = config('app.debug') ? 0 : 0.5;
+
+        return app('cache')->remember('Service.fullStatus', $cacheTime, function () use ($minutesAgo) {
             $services = $this->all();
 
             $servicesSummary = [
                 'operational'    => true,
-                'brokenRecently' => false,
+                'brokeRecently'  => false,
                 'healthStatus'   => Status::HEALTHY,
                 'checks'         => 0,
                 'lastCheck'      => null,
@@ -111,24 +113,30 @@ class Service extends Model {
 
                 $servicesSummary['summaries'][] = $serviceDetails + ['summary' => $serviceStatus];
 
-                foreach ($serviceStatus as $status) {
-                    if ($status['broken'] === true) {
-                        $servicesSummary['operational'] = false;
-                    }
+                if ($serviceStatus['broken'] === true) {
+                    $servicesSummary['operational'] = false;
+                }
 
-                    if ($status['brokenRecently'] === true) {
-                        $servicesSummary['brokenRecently'] = true;
-                    }
+                if ($serviceStatus['brokeRecently'] === true) {
+                    $servicesSummary['brokeRecently'] = true;
+                }
 
-                    $servicesSummary['checks'] += $status['checks'];
+                $servicesSummary['checks'] += $serviceStatus['checks'];
+
+                $healthStatus = $serviceStatus['healthStatus'];
+
+                if ($healthStatus === Status::WARNING AND $servicesSummary['healthStatus'] !== Status::CRITICAL) {
+                    $servicesSummary['healthStatus'] = Status::WARNING;
+                }
+
+                else if ($healthStatus === Status::CRITICAL) {
+                    $servicesSummary['healthStatus'] = Status::CRITICAL;
                 }
             }
 
             if ($lastStatus = Status::recent(1)->first()) {
                 $servicesSummary['lastCheck'] = $lastStatus->created_at;
             }
-
-            /* @TODO: Calculate application health */
 
             return $servicesSummary;
         });

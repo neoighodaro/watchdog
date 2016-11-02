@@ -10,35 +10,26 @@
                     <img src="{{ asset('img/watchdog-small.png') }}">
                     <h1 class="page-title">STATUS</h1>
                 </div>
-                {{--
+                {{-- --}}
                 <div class="centered links">
                     <a href="#" title="@lang('app.manage_services')">@lang('app.manage_services')</a>
                     <a href="{{ route('logout') }}" title="@lang('app.logout')">@lang('app.logout')</a>
                 </div>
-                --}}
+                {{-- --}}
             </div>
 
             @if ($pageStatus === App\Status::HEALTHY)
             <div class="page-status status-none">
-              <span class="status font-large">
-                All Systems Operational
-              </span>
-                <span class="last-updated-stamp font-small">Last Checked {{ ucwords($summary['lastCheck']->diffForHumans()) }}</span>
-            </div>
-            @endif
-
-            <!--div class="page-status status-warning">
-              <span class="status font-large">
-                All Systems Operational
-              </span>
-                <span class="last-updated-stamp font-small">Refreshed a minute ago</span>
-            </div>
+              <span class="status font-large">All Systems Operational</span>
+            @elseif ($pageStatus === App\Status::WARNING)
+            <div class="page-status status-warning">
+              <span class="status font-large">System is Partially Operational</span>
+            @elseif ($pageStatus === App\Status::CRITICAL)
             <div class="page-status status-danger">
-              <span class="status font-large">
-                All Systems Operational
-              </span>
-                <span class="last-updated-stamp font-small">Refreshed a minute ago</span>
-            </div-->
+              <span class="status font-large">Houston, We Have A Problem!</span>
+            @endif
+              <span class="last-updated-stamp font-small">Last Checked {{ ucwords($summary['lastCheck']->diffForHumans()) }}</span>
+            </div>
 
             <ul class="services">
             @foreach ($services as $service)
