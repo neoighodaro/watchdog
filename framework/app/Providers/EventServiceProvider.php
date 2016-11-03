@@ -36,20 +36,22 @@ class EventServiceProvider extends ServiceProvider
         $this->loadPluginEvents();
     }
 
+    /**
+     * Load all the plugin events available.
+     *
+     * @return null
+     */
     protected function loadPluginEvents()
     {
         $path = plugin_path();
 
         foreach (glob($path.'/*/Events/*.php') as $file) {
-            $event = 'App\Events\WatchdogCheckFailed';
+            $filePath = str_replace($path.'/', '', $file);
 
-            // Get the class name here...
+            $class = classname_from_path($filePath, "App\\Plugin\\");
 
-            $className = "App\\Plugin\\Slack\\Events\\WatchdogCheckFailed";
-
-            Event::listen($event, function ($event) use ($className) {
-                $handler = new $className($event);
-                $handler->handle();
+            Event::listen("App\\Events\\WatchdogCheckFailed", function($event) use ($class) {
+                (new $class($event))->handle();
             });
         }
     }
