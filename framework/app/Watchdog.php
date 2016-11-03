@@ -6,6 +6,11 @@ use Illuminate\Foundation\Application as IlluminateApplication;
 class Watchdog extends IlluminateApplication {
 
     /**
+     * Watchdog version.
+     */
+    const VERSION = "1.0.0";
+
+    /**
      * {@inheritdoc}
      */
     public function getNamespace()

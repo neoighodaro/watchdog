@@ -14,4 +14,17 @@ interface CheckerInterface {
      */
     function check(Service $service);
 
+    /**
+     * Get the status of the service.
+     *
+     * @return integer
+     */
+    function status();
+
+    /**
+     * Get the description of the error.
+     *
+     * @return string
+     */
+    function description();
 }

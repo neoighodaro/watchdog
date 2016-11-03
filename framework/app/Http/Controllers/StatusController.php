@@ -10,7 +10,7 @@ class StatusController extends Controller {
     public function index()
     {
         $service = new Service;
-        $summary = $service->fullStatus();
+        $summary = $service->fullStatus(60*24*31);
 
         return view('status', [
             'summary'    => $summary,

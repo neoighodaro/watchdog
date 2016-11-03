@@ -15,6 +15,14 @@ use App\Service as ServiceModel;
 class Watchdog {
 
     /**
+     * Service status levels
+     */
+
+    const SERVICE_OK    = 200;
+    const SERVICE_BAD   = 0;
+    const SERVICE_ISSUE = 100;
+
+    /**
      * @var CheckerInterface
      */
     protected $driver;

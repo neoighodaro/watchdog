@@ -22,7 +22,10 @@
         "psr-4": {
             "App\\": "framework/app/",
             "App\\Plugin\\": "content/plugins/"
-        }
+        },
+        "files": [
+            "framework/bootstrap/helpers.php"
+        ]
     },
     "autoload-dev": {
         "classmap": [

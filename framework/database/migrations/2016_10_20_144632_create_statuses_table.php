@@ -17,6 +17,7 @@ class CreateStatusesTable extends Migration
             $table->increments('id');
             $table->integer('service_id')->unsigned();
             $table->integer('response');
+            $table->text('description')->nullable();
             $table->timestamps();
 
             $table->foreign('service_id')->references('id')->on('services');

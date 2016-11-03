@@ -192,14 +192,15 @@ class Service extends Model {
 
             $breaks = $serviceStatus['breaks'];
 
+            // @TODO problematic code!
             $criticalThreshold = $breaks >= round($serviceStatus['checks'] * 0.5);
             $warningThreshold  = $breaks >= round($serviceStatus['checks'] * 0.2);
 
-            if ($criticalThreshold && $checksAvailable >= 1) {
+            if ($criticalThreshold && $checksAvailable > 1) {
                 $serviceStatus['healthStatus'] = Status::CRITICAL;
             }
 
-            else if ($warningThreshold) {
+            else if ($warningThreshold && $checksAvailable > 1) {
                 $serviceStatus['healthStatus'] = Status::WARNING;
             }
 

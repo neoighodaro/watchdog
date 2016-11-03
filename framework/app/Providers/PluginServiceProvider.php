@@ -19,7 +19,7 @@ class PluginServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $path = realpath(__DIR__.'/../../../content/plugins');
+        $path = plugin_path();
 
         // ---------------------------------------------------------------
         // Attempt to load the Service Provider attached to each plugin.

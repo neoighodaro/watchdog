@@ -21,7 +21,7 @@ class Status extends Model {
      *
      * @var array
      */
-    protected $fillable = ['service_id', 'response'];
+    protected $fillable = ['service_id', 'response', 'description'];
 
     /**
      * Check when last watchdog was run.

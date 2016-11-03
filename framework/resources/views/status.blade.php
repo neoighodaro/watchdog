@@ -18,6 +18,7 @@
                 {{-- --}}
             </div>
 
+            @if ($summary['checks'] > 0)
             @if ($pageStatus === App\Status::HEALTHY)
             <div class="page-status status-none">
               <span class="status font-large">All Systems Operational</span>
@@ -30,6 +31,7 @@
             @endif
               <span class="last-updated-stamp font-small">Last Checked {{ ucwords($summary['lastCheck']->diffForHumans()) }}</span>
             </div>
+            @endif
 
             <ul class="services">
             @foreach ($services as $service)
@@ -43,7 +45,7 @@
 
                     <div class="status pull-right">
                     @if ( ! $service->hasRunAtLeastOnce())
-                        <span class="status unknown">Unknown</span>
+                        <span class="status unknown">Not Checked</span>
                     @else
                         <span class="status {{ $service->isOk() ? 'is-' : 'not-' }}operational">
                             {{ $service->isOk() ? "Operational" : "Non-Operational" }}
