@@ -2,6 +2,9 @@
 /public/storage
 /framework/vendor
 /.idea
+/content/plugins/*
+!/content/plugins/Http
+!/content/plugins/Slack
 Homestead.json
 Homestead.yaml
 .env
