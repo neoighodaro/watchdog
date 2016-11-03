@@ -30,6 +30,7 @@ class WatchdogCheckFailed {
      */
     public function handle()
     {
+        // Should only send notifications if there are 2 breakages in a row...
         echo "Send Slack Notification";
     }
 }

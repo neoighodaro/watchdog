@@ -26,11 +26,11 @@ class PluginServiceProvider extends ServiceProvider
         // ---------------------------------------------------------------
 
         foreach (glob($path.'/*/*ServiceProvider.php') as $file) {
-            $namespace = str_replace($path.'/', '', str_replace('.php', '', $file));
+            $filePath = str_replace($path.'/', '', $file);
 
-            list($namespace, $className) = explode('/', $namespace, 2);
+            $class = classname_from_path($filePath, "App\\Plugin\\");
 
-            $this->app->register("App\\Plugin\\{$namespace}\\{$className}");
+            $this->app->register($class);
         }
     }
 }
