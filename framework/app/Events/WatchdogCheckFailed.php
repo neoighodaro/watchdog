@@ -12,14 +12,14 @@ class WatchdogCheckFailed
      *
      * @var CheckerInterface
      */
-    protected $response;
+    public $response;
 
     /**
      * Service model instance.
      *
      * @var Service
      */
-    protected $service;
+    public $service;
 
     /**
      * Create a new event instance.

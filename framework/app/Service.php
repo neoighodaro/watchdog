@@ -30,6 +30,7 @@ class Service extends Model {
         'meta',
         'cron',
         'user_id',
+        'disabled',
         'description',
     ];
 

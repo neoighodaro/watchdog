@@ -30,6 +30,18 @@ class WatchdogCheckFailed {
      */
     public function handle()
     {
+        // Check last few responses...
+        // -----
+        // $this->event->response
+        // $this->event->service
+
+        // Fetch error description
+        $description = $this->event->response->description();
+
+        dd($this->event->service->with(['statuses' => function ($query) {
+            $query->take(1);
+        }])->statuses()->get());
+
         // Should only send notifications if there are 2 breakages in a row...
         echo "Send Slack Notification";
     }

@@ -20,6 +20,7 @@ class CreateServicesTable extends Migration
             $table->string('url');
             $table->string('type', 30)->default('http');
             $table->integer('user_id')->unsigned();
+            $table->boolean('disabled')->default(false);
             $table->string('cron')->default('* * * * * *');
             $table->text('meta');
             $table->softDeletes();
