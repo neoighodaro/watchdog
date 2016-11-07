@@ -2,6 +2,7 @@
 
 namespace App\Plugin\Slack\Events;
 
+use App\Plugin\Slack;
 use App\Events\WatchdogCheckFailed;
 
 class WatchdogCheckFailed {
@@ -30,19 +31,71 @@ class WatchdogCheckFailed {
      */
     public function handle()
     {
-        // Check last few responses...
-        // -----
-        // $this->event->response
-        // $this->event->service
+        $service = $this->event->service->with(['statuses' => function ($query) {
+            $query->orderBy('created_at', 'desc')->take(2);
+        }])->find($this->event->service->id);
 
-        // Fetch error description
-        $description = $this->event->response->description();
+        if ($service) {
+            $maximumFailure = 0;
 
-        dd($this->event->service->with(['statuses' => function ($query) {
-            $query->take(1);
-        }])->statuses()->get());
+            foreach ($service->statuses as $status) {
+                if ( ! $status->isResponseOk()) $maximumFailure++;
+            }
 
-        // Should only send notifications if there are 2 breakages in a row...
-        echo "Send Slack Notification";
+            $description = $this->event->response->description();
+
+            if ($maximumFailure >= 1) {
+                return $this->brokenMoreThanOnceEvent($service, $description);
+            }
+
+            return $this->brokenJustOnceEvent($service, $description);
+        }
+    }
+
+    /**
+     * Fire event if the service has been broken more than once.
+     *
+     * @param  Service $service
+     * @param  string  $description
+     * @return null
+     */
+    protected function brokenMoreThanOnceEvent($service, $description)
+    {
+        $errorMessage = "Seems there's something up with \"{$service->name}\".\n{$description}";
+
+        return $this->postNotification("_Woof!!! Watchdog encountered an issue connecting to one of the services..._", [
+            'color' => 'danger',
+            'title' => 'Houston, we have a problem!',
+            'text' => $errorMessage,
+            'fallback_text' => $errorMessage,
+        ]);
+    }
+
+    /**
+     * Fire event if the service has been broken just once.
+     *
+     * @param  Service $service
+     * @param  string  $description
+     * @return null
+     */
+    protected function brokenJustOnceEvent($service, $description)
+    {
+        // Stub
+    }
+
+    /**
+     * Post notification to slack.
+     *
+     * @param  string $msg
+     * @param  array  $attachments
+     * @return null
+     */
+    protected function postNotification($msg, array $attachments = [])
+    {
+        return (new Slack\Notification)->postChatMessage($msg, [
+            'channel'     => env('SLACK_POST_CHANNEL'),
+            'icon_url'    => asset('img/watchdog@2x.png'),
+            'attachments' => json_encode([$attachments]),
+        ]);
     }
 }
