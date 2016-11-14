@@ -5,7 +5,7 @@ namespace App\Plugin\Slack\Events;
 use App\Option;
 use Carbon\Carbon;
 use App\Plugin\Slack;
-use App\Events\WatchdogCheckFailed;
+use App\Events\WatchdogCheckFailed as WatchdogCheckFailedEvent;
 
 class WatchdogCheckFailed {
 
@@ -24,9 +24,9 @@ class WatchdogCheckFailed {
     /**
      * Class constructor.
      *
-     * @param WatchdogCheckFailed $event
+     * @param WatchdogCheckFailedEvent $event
      */
-    public function __construct(WatchdogCheckFailed $event)
+    public function __construct(WatchdogCheckFailedEvent $event)
     {
         $this->event = $event;
     }
