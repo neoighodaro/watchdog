@@ -13,8 +13,8 @@ class UsersTableSeeder extends Seeder
     {
         $users = [
             [
-                'name'       => 'Neo',
-                'email'      => 'neo@hng.tech',
+                'name'       => 'Product',
+                'email'      => 'product@hotels.ng',
                 'password'   => bcrypt(env('ADMIN_USER_PASSWORD')),
                 'created_at' => Carbon\Carbon::now(),
                 'updated_at' => Carbon\Carbon::now(),
