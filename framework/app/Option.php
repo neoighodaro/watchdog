@@ -20,7 +20,7 @@ class Option extends Model
      */
     public function getOption($option, $default = false)
     {
-        if ( ! $option = static::whereOptionName(strtolower($option))->first()) {
+        if ( ! $option = static::whereName(strtolower($option))->first()) {
             return $default;
         }
 
