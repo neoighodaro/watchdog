@@ -71,7 +71,7 @@ class WatchdogCheckFailed {
         $errorMessage  = "Seems there's something up with \"{$service->name} ({$service->url})";
         $errorMessage .= "\n{$description}";
 
-        return $this->postNotification("_Woof!!! Watchdog encountered an issue connecting to one of the services... <@channel>_", [
+        return $this->postNotification("_Woof!!! Watchdog encountered an issue connecting to one of the services... @channel_", [
             'color' => 'danger',
             'title' => 'Houston, we have a problem!',
             'text' => $errorMessage,
