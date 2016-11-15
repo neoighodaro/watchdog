@@ -77,7 +77,7 @@ class HttpChecker implements CheckerInterface {
             CURLOPT_AUTOREFERER    => true,
             CURLOPT_CONNECTTIMEOUT => 5,
             CURLOPT_TIMEOUT        => 5,
-            CURLOPT_NOBODY         => true,
+            CURLOPT_NOBODY         => false,
             CURLOPT_MAXREDIRS      => 10,
             CURLOPT_SSL_VERIFYPEER => false,
             CURLOPT_SSL_VERIFYHOST => false,
